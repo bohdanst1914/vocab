@@ -1,0 +1,47 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
+        "jest": true
+    },
+    "extends": ["airbnb", "airbnb/hooks", "prettier", "prettier/react"],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src/composer"]
+            }
+        }
+    },
+    "plugins": ["prettier", "testing-library"],
+    "rules": {
+        "prettier/prettier": "error",
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+        "import/prefer-default-export": "off",
+        "testing-library/no-debug": "error",
+        "react/button-has-type": "off",
+        "react/no-unescaped-entities": "off",
+        "no-unused-vars": "off",
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "no-param-reassign": "off",
+        "react/prop-types": "off",
+        "react/jsx-filename-extension": "off"
+    },
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"],
+            "rules": {
+                "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+                "import/prefer-default-export": 0,
+                "react/jsx-props-no-spreading": 0,
+                "import/order": [
+                    2,
+                    {
+                        "newlines-between": "always"
+                    }
+                ]
+            }
+        }
+    ]
+}
