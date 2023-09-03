@@ -10,13 +10,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "yarn test:hook"
-    }
-  },
   "lint-staged": {
     "*.{jsx,js, tsx, ts}": [
       "yarn lint:scripts:hook"

@@ -19,3 +19,7 @@ export const TypesButtonContainer = styled.div`
     }
   }
 `;
+
+export const MainWrapper = styled.div`
+  margin: 20px;
+`;

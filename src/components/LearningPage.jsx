@@ -1,12 +1,15 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { concatAndMix, mixWords } from './utils';
-import { ButtonStyled } from '../styled';
+import { PrimaryButtonStyled } from '../styles';
 import { TYPE } from '../constants';
 
 const mixWordsFalse = (type, selectedWords) => {
   const mixedWords = mixWords(selectedWords);
   if (type === TYPE.DOUBLE_REPETITION) {
     return concatAndMix(mixedWords);
+  }
+  if (type === TYPE.WRITING) {
+    return mixedWords.map(item => ({ ...item, write: true }));
   }
   return mixedWords;
 };
@@ -25,7 +28,6 @@ const LearningPage = ({
   const btnRef = useRef();
 
   const [wordsToLearn, setWordsToLearn] = useState([]);
-  const [showWordsList, setShowWordsList] = useState(false);
 
   const [inputValue, setInputValue] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
@@ -41,6 +43,8 @@ const LearningPage = ({
     setWordsToLearn(filteredArray);
     setIsShownTranslation(false);
     setInputValue('');
+    setIsCorrect(false);
+    setInputClassName('');
   };
 
   useEffect(() => {
@@ -76,6 +80,7 @@ const LearningPage = ({
       setIsCorrect(true);
       setInputClassName('good');
     } else {
+      setIsCorrect(false);
       setInputClassName('bad');
     }
   };
@@ -95,45 +100,19 @@ const LearningPage = ({
       </div>
 
       {!isStarted && (
-        <>
-          <h2 className="shown-word">Start</h2>
-          <div className="position-left">
-            <ButtonStyled className="next-word__button" onClick={handleStartClick}>
-              Let's go
-            </ButtonStyled>
-          </div>
-        </>
+        <div className="position-left">
+          <PrimaryButtonStyled className="next-word__button" onClick={handleStartClick}>
+            Почали
+          </PrimaryButtonStyled>
+        </div>
       )}
 
       {isStarted && wordsToLearn.length ? (
         <>
-          {!showWordsList && (
-            <div className="position-left">
-              <ButtonStyled onClick={() => setShowWordsList(true)}>Show words list</ButtonStyled>
-            </div>
-          )}
-          {showWordsList && (
-            <>
-              <div className="position-left">
-                <ButtonStyled onClick={() => setShowWordsList(false)}>Hide words list</ButtonStyled>
-              </div>
-
-              <table className="selected-words-list">
-                {selectedWords.map((word, index) => (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{word.words_eng}</td>
-                    <td>{word.translate}</td>
-                  </tr>
-                ))}
-              </table>
-            </>
-          )}
-
           <h2 className="shown-word">{shownWord}</h2>
 
-          {wordsToLearn[0].write && selectedType === TYPE.WRITING && (
-            <form action="" onSubmit={handlerSubmit}>
+          {selectedType === TYPE.WRITING && (
+            <form onSubmit={handlerSubmit}>
               <input
                 type="text"
                 className={inputClassName}
@@ -146,17 +125,24 @@ const LearningPage = ({
 
           <div className="vocabulary-buttons position-left">
             {!isShownTranslation && (
-              <ButtonStyled className="show-word__button" onClick={showWordButtonClick}>
+              <PrimaryButtonStyled className="show-word__button" onClick={showWordButtonClick}>
                 Show word
-              </ButtonStyled>
+              </PrimaryButtonStyled>
             )}
-
-            <ButtonStyled ref={btnRef} className="next-word__button" onClick={nextButtonClick}>
-              Next
-            </ButtonStyled>
+            {(selectedType !== TYPE.WRITING || isCorrect) && (
+              <PrimaryButtonStyled
+                ref={btnRef}
+                className="next-word__button"
+                onClick={nextButtonClick}
+              >
+                Next
+              </PrimaryButtonStyled>
+            )}
           </div>
 
-          {isShownTranslation && <div className="show-word_text">{shownTranslationWord}</div>}
+          <div className={`show-word_text ${isShownTranslation ? 'show' : 'hide'}`}>
+            {shownTranslationWord}
+          </div>
         </>
       ) : null}
 

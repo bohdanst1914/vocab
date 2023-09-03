@@ -44,7 +44,7 @@ export const ielts = {
     {
       index: 816,
       words_eng: 'fair-weather friend',
-      translate: 'друг який з тобою колит ти багатий або веселий',
+      translate: 'друг який з тобою коли ти багатий або веселий',
     },
     { index: 816, words_eng: 'get in touch with somebody', translate: 'сконтактуватись з кимось' },
     {
@@ -94,13 +94,13 @@ export const ielts = {
     { index: 816, words_eng: 'computer buff', translate: 'добре володіє компютером' },
     { index: 816, words_eng: 'computer fatigue', translate: 'синдром втоми від компютера' },
     { index: 816, words_eng: 'cutting-edge', translate: 'щось інноваційне та провідне' },
-    { index: 816, words_eng: 'digital editing', translate: 'процес зміни відео і адіо файлів' },
+    { index: 816, words_eng: 'digital editing', translate: 'процес зміни відео і аудіо файлів' },
     {
       index: 816,
       words_eng: 'essential',
       translate: 'без чого не можеш уявити своє життя, важливий',
     },
-    { index: 816, words_eng: 'geek', translate: 'той хто орержимий технологіями/компютером' },
+    { index: 816, words_eng: 'geek', translate: 'той хто одержимий технологіями/компютером' },
     { index: 816, words_eng: 'hold the line', translate: 'почекай хвилинку' },
     { index: 816, words_eng: 'light years ahead', translate: 'дуже далеко від' },
     { index: 816, words_eng: 'on the cutting edge', translate: 'попереду прогресу' },

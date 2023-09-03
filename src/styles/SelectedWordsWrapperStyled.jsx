@@ -25,6 +25,7 @@ export const SelectedWordsWrapperStyled = styled.div`
 
   .learning-types-buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 10px;
     button {
@@ -61,6 +62,11 @@ export const SelectedWordsWrapperStyled = styled.div`
     background: wheat;
     border-radius: 8px;
     margin: 0 auto 40px;
+    @media (max-width: 662px) {
+      margin: 0 auto 20px;
+      font-size: 30px;
+      padding: 15px;
+    }
   }
 
   input {
@@ -72,11 +78,9 @@ export const SelectedWordsWrapperStyled = styled.div`
     border: 1px solid silver;
     color: #181818;
     &.bad {
-      color: wheat;
       background: rgba(255, 0, 0, 0.1);
     }
     &.good {
-      color: wheat;
       background: rgba(0, 128, 0, 0.1);
     }
   }
@@ -98,6 +102,7 @@ export const SelectedWordsWrapperStyled = styled.div`
   }
 
   .show-word_text {
+    box-sizing: border-box;
     display: inline-block;
     text-align: center;
     padding: 15px 20px;
@@ -106,7 +111,14 @@ export const SelectedWordsWrapperStyled = styled.div`
     border-radius: 4px;
     @media (max-width: 662px) {
       margin-top: 5px;
-      width: 90%;
+      width: 100%;
+      padding: 10px 15px;
+    }
+    &.hide {
+      visibility: hidden;
+    }
+    &.show {
+      visibility: visible;
     }
   }
 
@@ -129,5 +141,13 @@ export const SelectedWordsWrapperStyled = styled.div`
     display: flex;
     justify-content: flex-end;
     margin: 5px 0;
+  }
+
+  .choose-other {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .words-list-button {
+    width: 100%;
   }
 `;
